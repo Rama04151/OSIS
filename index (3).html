@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aspirasi Siswa SMAN 3 Tebas</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(rgba(0, 70, 150, 0.85), rgba(0, 120, 200, 0.85)),
+                url("smantilogo.png");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background: rgba(255, 255, 255, 0.95);
+    width: 400px;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+h2 {
+    text-align: center;
+    color: #0d47a1;
+}
+
+.datetime {
+    text-align: center;
+    font-size: 14px;
+    margin-bottom: 15px;
+    color: #1565c0;
+    font-weight: bold;
+}
+
+label {
+    font-weight: bold;
+    color: #0d47a1;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0 15px 0;
+    border-radius: 8px;
+    border: 1px solid #90caf9;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background: #1565c0;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #0d47a1;
+}
+
+.status {
+    text-align: center;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+select {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0 15px 0;
+    border-radius: 8px;
+    border: 1px solid #90caf9;
+    background: white;
+    cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>ISI HATI SISWA<br>SMAN 3 TEBAS</h2>
+
+    <div class="datetime" id="datetime"></div>
+
+    <form id="aspirasiForm">
+        <label>Nama :</label>
+        <input type="text" id="nama" required>
+
+        <label>Kelas :</label>
+<select id="kelas" required>
+    <option value="" disabled selected>Pilih Kelas</option>
+    <option value="XA">XA</option>
+    <option value="XB">XB</option>
+    <option value="XIA">XIA</option>
+    <option value="XIB">XIB</option>
+    <option value="XIIA">XIIA</option>
+    <option value="XIIB">XIIB</option>
+</select>
+
+        <label>Isi Hati kamu :</label>
+        <textarea id="isi" rows="4" required></textarea>
+
+        <button type="submit">Kirim Aspirasi</button>
+        <div class="status" id="status"></div>
+    </form>
+</div>
+
+<script>
+// ===== REAL TIME CLOCK =====
+function updateDateTime() {
+    const now = new Date();
+
+    const options = {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    };
+
+    const date = now.toLocaleDateString('id-ID', options);
+    const time = now.toLocaleTimeString('id-ID');
+
+    document.getElementById("datetime").innerHTML =
+        "📅 " + date + "<br>⌚ " + time;
+}
+
+setInterval(updateDateTime, 1000);
+updateDateTime();
+
+// ===== TELEGRAM SEND =====
+document.getElementById("aspirasiForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const nama = document.getElementById("nama").value;
+    const kelas = document.getElementById("kelas").value;
+    const isi = document.getElementById("isi").value;
+
+    const now = new Date();
+    const tanggal = now.toLocaleDateString('id-ID');
+    const waktu = now.toLocaleTimeString('id-ID');
+
+    const token = "8539344864:AAEVDozs18IUtuAQPBd-bsD2xR_7y7xOuq8";
+    const chat_id = "7327517194";
+
+    const message = `
+📩 ASPIRASI SMAN 3 TEBAS
+
+🗓 ${tanggal} • ⏰ ${waktu}
+
+👤 ${nama}
+🎓 ${kelas}
+
+💬
+“${isi}”
+
+🚀 via Smanti Web System
+`;
+    fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+            chat_id: chat_id,
+            text: message
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById("status").style.color = "green";
+        document.getElementById("status").innerText = "Aspirasi berhasil dikirim!";
+        document.getElementById("aspirasiForm").reset();
+    })
+    .catch(error => {
+        document.getElementById("status").style.color = "red";
+        document.getElementById("status").innerText = "Gagal mengirim. Coba lagi.";
+    });
+});
+</script>
+
+</body>
+</html>
