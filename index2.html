@@ -6,155 +6,347 @@
 <title>Aspirasi Siswa SMAN 3 Tebas</title>
 
 <style>
-body {
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    background: linear-gradient(rgba(0, 70, 150, 0.85), rgba(0, 120, 200, 0.85)),
-                url("smantilogo.png");
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+
+*{
+box-sizing:border-box;
 }
 
-.container {
-    background: rgba(255, 255, 255, 0.95);
-    width: 400px;
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+body{
+margin:0;
+font-family:'Segoe UI',sans-serif;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+
+background:
+linear-gradient(120deg,#004e92,#000428,#0072ff,#00c6ff);
+background-size:400% 400%;
+animation:bgmove 12s ease infinite;
 }
 
-h2 {
-    text-align: center;
-    color: #0d47a1;
+@keyframes bgmove{
+0%{background-position:0% 50%}
+50%{background-position:100% 50%}
+100%{background-position:0% 50%}
 }
 
-.datetime {
-    text-align: center;
-    font-size: 14px;
-    margin-bottom: 15px;
-    color: #1565c0;
-    font-weight: bold;
+.container{
+width:420px;
+padding:35px;
+
+background:rgba(255,255,255,0.12);
+backdrop-filter:blur(20px);
+-webkit-backdrop-filter:blur(20px);
+
+border-radius:20px;
+
+box-shadow:
+0 10px 40px rgba(0,0,0,0.35),
+inset 0 0 10px rgba(255,255,255,0.2);
+
+color:white;
 }
 
-label {
-    font-weight: bold;
-    color: #0d47a1;
+h2{
+text-align:center;
+margin-bottom:5px;
+font-weight:600;
+letter-spacing:1px;
 }
 
-input, textarea {
-    width: 100%;
-    padding: 10px;
-    margin: 8px 0 15px 0;
-    border-radius: 8px;
-    border: 1px solid #90caf9;
+.datetime{
+text-align:center;
+font-size:14px;
+margin-bottom:20px;
+opacity:0.9;
 }
 
-button {
-    width: 100%;
-    padding: 12px;
-    background: #1565c0;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    cursor: pointer;
+label{
+font-weight:600;
+font-size:14px;
 }
 
-button:hover {
-    background: #0d47a1;
+input, textarea, select{
+width:100%;
+padding:12px;
+margin:8px 0 15px 0;
+
+border:none;
+border-radius:10px;
+
+background:rgba(255,255,255,0.9);
+
+font-size:14px;
+
+transition:0.3s;
 }
 
-.status {
-    text-align: center;
-    margin-top: 10px;
-    font-weight: bold;
+input:focus, textarea:focus, select:focus{
+outline:none;
+transform:scale(1.02);
+box-shadow:0 0 10px rgba(0,140,255,0.6);
 }
 
-select {
-    width: 100%;
-    padding: 10px;
-    margin: 8px 0 15px 0;
-    border-radius: 8px;
-    border: 1px solid #90caf9;
-    background: white;
-    cursor: pointer;
+textarea{
+resize:none;
+}
+
+button{
+
+width:100%;
+padding:13px;
+
+border:none;
+border-radius:12px;
+
+font-size:16px;
+font-weight:600;
+
+color:white;
+
+background:linear-gradient(90deg,#00c6ff,#0072ff);
+
+cursor:pointer;
+
+transition:0.3s;
+
+box-shadow:
+0 0 15px rgba(0,140,255,0.6);
+
+}
+
+button:hover{
+
+transform:translateY(-2px);
+
+box-shadow:
+0 5px 20px rgba(0,150,255,0.9);
+
+}
+
+.status{
+text-align:center;
+margin-top:10px;
+font-weight:bold;
+}
+
+.footer{
+text-align:center;
+font-size:12px;
+margin-top:15px;
+opacity:0.8;
+}
+
+.textarea-box{
+position:relative;
+}
+
+.textarea-box textarea{
+
+width:100%;
+padding:15px;
+
+border-radius:12px;
+border:2px solid transparent;
+
+background:
+linear-gradient(white,white) padding-box,
+linear-gradient(120deg,#00c6ff,#0072ff) border-box;
+
+font-size:14px;
+
+transition:0.3s;
+
+box-shadow:0 5px 15px rgba(0,0,0,0.1);
+
+}
+
+.textarea-box textarea:focus{
+
+outline:none;
+
+transform:scale(1.02);
+
+box-shadow:
+0 0 15px rgba(0,150,255,0.7);
+
+}
+
+.textarea-box textarea::placeholder{
+
+color:#777;
+font-style:italic;
+
+}
+
+.rocket{
+position:fixed;
+bottom:80px;
+left:50%;
+transform:translateX(-50%);
+font-size:40px;
+opacity:0;
+pointer-events:none;
+}
+
+.launch{
+animation:launchRocket 1.8s ease-out forwards;
+}
+
+@keyframes launchRocket{
+
+0%{
+transform:translate(-50%,0) scale(1);
+opacity:1;
+}
+
+50%{
+transform:translate(-50%,-200px) scale(1.2);
+opacity:1;
+}
+
+100%{
+transform:translate(-50%,-500px) scale(0.8);
+opacity:0;
+}
+
+}
+
+.datetime-box{
+
+background:rgba(255,255,255,0.15);
+border-radius:14px;
+
+padding:12px;
+
+margin-bottom:20px;
+
+text-align:center;
+
+box-shadow:
+0 0 15px rgba(0,150,255,0.5),
+inset 0 0 8px rgba(255,255,255,0.3);
+
+}
+
+.date{
+
+font-size:14px;
+letter-spacing:1px;
+margin-bottom:5px;
+
+}
+
+.time{
+
+font-size:22px;
+font-weight:bold;
+
+color:#00eaff;
+
+text-shadow:
+0 0 10px #00eaff,
+0 0 20px #00eaff;
+
 }
 </style>
 </head>
 
 <body>
 
+
 <div class="container">
-    <h2>ISI HATI SISWA<br>SMAN 3 TEBAS</h2>
 
-    <div class="datetime" id="datetime"></div>
+<h2>ISI HATI SISWA<br>SMAN 3 TEBAS</h2>
 
-    <form id="aspirasiForm">
-        <label>Nama :</label>
-        <input type="text" id="nama" required>
+<div class="datetime-box">
+<div class="date" id="date"></div>
+<div class="time" id="time"></div>
+</div>
 
-        <label>Kelas :</label>
+<form id="aspirasiForm">
+
+<label>Nama :</label>
+<input type="text" id="nama" required>
+
+<label>Kelas :</label>
 <select id="kelas" required>
-    <option value="" disabled selected>Pilih Kelas</option>
-    <option value="XA">XA</option>
-    <option value="XB">XB</option>
-    <option value="XIA">XIA</option>
-    <option value="XIB">XIB</option>
-    <option value="XIIA">XIIA</option>
-    <option value="XIIB">XIIB</option>
+<option value="" disabled selected>Pilih Kelas</option>
+<option value="XA">XA</option>
+<option value="XB">XB</option>
+<option value="XIA">XIA</option>
+<option value="XIB">XIB</option>
+<option value="XIIA">XIIA</option>
+<option value="XIIB">XIIB</option>
 </select>
 
-        <label>Isi Hati kamu :</label>
-        <textarea id="isi" rows="4" required></textarea>
+<label>Isi Hati kamu :</label>
 
-        <button type="submit">Kirim Aspirasi</button>
-        <div class="status" id="status"></div>
-    </form>
+<div class="textarea-box">
+<textarea id="isi" rows="4" required placeholder="Tulis isi hati kamu di sini..."></textarea>
+</div>
+
+<button type="submit">🚀 Kirim Aspirasi</button>
+
+<div class="status" id="status"></div>
+
+</form>
+
+<div class="footer">
+Smanti Web System
+</div>
+
+<div id="rocket" class="rocket">🚀</div>
+
 </div>
 
 <script>
-// ===== REAL TIME CLOCK =====
-function updateDateTime() {
-    const now = new Date();
 
-    const options = {
-        weekday: 'long',
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
-    };
+function updateDateTime(){
 
-    const date = now.toLocaleDateString('id-ID', options);
-    const time = now.toLocaleTimeString('id-ID');
+const now = new Date();
 
-    document.getElementById("datetime").innerHTML =
-        "📅 " + date + "<br>⌚ " + time;
+const options = {
+weekday: 'long',
+year: 'numeric',
+month: 'long',
+day: 'numeric'
+};
+
+const tanggal = now.toLocaleDateString('id-ID', options);
+const waktu = now.toLocaleTimeString('id-ID');
+
+document.getElementById("date").innerText = "📅 " + tanggal;
+document.getElementById("time").innerText = "⌚ " + waktu;
+
 }
 
-setInterval(updateDateTime, 1000);
 updateDateTime();
+setInterval(updateDateTime,1000);
 
-// ===== TELEGRAM SEND =====
-document.getElementById("aspirasiForm").addEventListener("submit", function(e) {
-    e.preventDefault();
+document.getElementById("aspirasiForm").addEventListener("submit", function(e){
 
-    const nama = document.getElementById("nama").value;
-    const kelas = document.getElementById("kelas").value;
-    const isi = document.getElementById("isi").value;
+e.preventDefault();
 
-    const now = new Date();
-    const tanggal = now.toLocaleDateString('id-ID');
-    const waktu = now.toLocaleTimeString('id-ID');
+const rocket = document.getElementById("rocket");
 
-    const token = "8539344864:AAEVDozs18IUtuAQPBd-bsD2xR_7y7xOuq8";
-    const chat_id = "7327517194";
+rocket.classList.remove("launch");
+void rocket.offsetWidth;
+rocket.classList.add("launch");
 
-    const message = `
+const nama = document.getElementById("nama").value;
+const kelas = document.getElementById("kelas").value;
+const isi = document.getElementById("isi").value;
+
+const now = new Date();
+const tanggal = now.toLocaleDateString('id-ID');
+const waktu = now.toLocaleTimeString('id-ID');
+
+const token = "8539344864:AAEVDozs18IUtuAQPBd-bsD2xR_7y7xOuq8";
+const chat_id = "7327517194";
+
+const message = `
 📩 ASPIRASI SMAN 3 TEBAS
 
 🗓 ${tanggal} • ⏰ ${waktu}
@@ -167,25 +359,34 @@ document.getElementById("aspirasiForm").addEventListener("submit", function(e) {
 
 🚀 via Smanti Web System
 `;
-    fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({
-            chat_id: chat_id,
-            text: message
-        })
-    })
-    .then(response => response.json())
-    .then(data => {
-        document.getElementById("status").style.color = "green";
-        document.getElementById("status").innerText = "Aspirasi berhasil dikirim!";
-        document.getElementById("aspirasiForm").reset();
-    })
-    .catch(error => {
-        document.getElementById("status").style.color = "red";
-        document.getElementById("status").innerText = "Gagal mengirim. Coba lagi.";
-    });
+
+fetch(`https://api.telegram.org/bot${token}/sendMessage`,{
+
+method:"POST",
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify({
+chat_id:chat_id,
+text:message
+})
+
+})
+
+.then(response=>response.json())
+
+.then(data=>{
+document.getElementById("status").style.color="lightgreen";
+document.getElementById("status").innerText="Aspirasi berhasil dikirim!";
+document.getElementById("aspirasiForm").reset();
+})
+
+.catch(error=>{
+document.getElementById("status").style.color="red";
+document.getElementById("status").innerText="Gagal mengirim.";
 });
+
+});
+
+
 </script>
 
 </body>
