@@ -124,8 +124,8 @@ body::after{
 }
 
 .logo{
-    width:55px;
-    height:55px;
+    width:65px;
+    height:65px;
 
     margin:0 auto 14px;
 
@@ -133,21 +133,27 @@ body::after{
     align-items:center;
     justify-content:center;
 
-    border-radius:16px;
+    border-radius:18px;
 
-    background:
-        linear-gradient(
-            135deg,
-            rgba(32,200,255,.18),
-            rgba(88,101,242,.18)
-        );
+    background:rgba(255,255,255,.08);
 
-    border:1px solid rgba(32,200,255,.2);
-
-    font-size:27px;
+    border:1px solid rgba(32,200,255,.18);
 
     box-shadow:
         0 0 25px rgba(32,200,255,.12);
+
+    overflow:hidden;
+}
+
+.logo img{
+    width:100%;
+    height:100%;
+
+    object-fit:contain;
+
+    padding:6px;
+
+    display:block;
 }
 
 h2{
@@ -473,7 +479,7 @@ button:disabled{
 </style></head><body><div class="container"><div class="header">
 
     <div class="logo">
-        💬
+    <img src="logo.png" alt="Logo SMAN 3 Tebas">
     </div>
 
     <h2>
